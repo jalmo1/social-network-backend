@@ -14,6 +14,20 @@ const UserSchema = new Schema({
     unique: true,
     match: [/.+@.+\..+/],
   },
+
+  thoughts: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Thoughts",
+    },
+  ],
+
+  friends: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Users",
+    },
+  ],
 });
 
 const Users = model("Users", UserSchema);
