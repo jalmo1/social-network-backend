@@ -21,11 +21,10 @@ const ReactionSchema = new Schema({
   createdAt: {
     type: Date,
     default: Date.now,
+    //using a getter method to get the current date and time using moment
     get: (createdAtVal) =>
       moment(createdAtVal).format("MMM DD, YYYY [at] hh:mm a"),
   },
 });
 
-const Reaction = model("Reaction", reactionSchema);
-
-module.exports = Reaction;
+module.exports = ReactionSchema;
