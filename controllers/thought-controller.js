@@ -52,10 +52,16 @@ const thoughtController = {
     });
   },
 
+  //Finds a thought based on the id and deletes it.
   deleteThought({ params }, res) {
     Thoughts.findOneAndDelete({ _id: params.id }).then((dbDeleteThought) => {
       console.log(dbDeleteThought._id.toString());
+
+      //I made up this word... but its a variable used to delete the specific id of the thought
       var deleter = dbDeleteThought._id.toString();
+
+      //After it deletes the thought we go in to the user to delete the
+      //thought from the user array as well
       Users.findOneAndUpdate(
         { thoughts: deleter },
         { $pull: { thoughts: deleter } }
@@ -85,6 +91,7 @@ const thoughtController = {
     console.log(body);
     Thoughts.findOneAndUpdate(
       { _id: params.thoughtId },
+      //pushes the body of the reaction to users reaction array.
       {
         $push: {
           reactions: {

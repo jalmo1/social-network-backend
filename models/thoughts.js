@@ -58,6 +58,7 @@ const ThoughtSchema = new Schema(
       required: true,
     },
 
+    //grabs the reaction schema and places it within this object
     reactions: [ReactionSchema],
   },
   {
